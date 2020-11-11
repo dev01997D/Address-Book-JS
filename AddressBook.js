@@ -83,7 +83,7 @@
 
     //view All Contacts available in Array
     let viewContacts = () => {
-        console.log(ContactsArray.toString()+ "\n");
+        console.log(ContactsArray.toString() + "\n");
     }
     let editContact = () => {
         console.log(ContactsArray.length);
@@ -102,6 +102,8 @@
             ContactsArray.find((contact) => contact.firstName == firstNameEdit).firstName = newFirstName;
         }
     }
+
+    //Delete a contact
     let deleteContact = () => {
         //console.log(ContactsArray.length);
         if (ContactsArray.length == 0) {
@@ -119,11 +121,16 @@
             ContactsArray = ContactsArray.filter((contact) => contact.firstName != firstNamedelete);
         }
     }
+    //Find total number of contacts
+    let countOfContacts = () => {
+        console.log("Total Number of contacts are : " +ContactsArray.reduce((totalCount, contact) => totalCount += 1, 0));
+    }
+
     console.log("Welcome To AddressBook Program through JavaScript");
     let choice = 0;
     //calling addContactsToAddressBook method to add new contact to Array
     do {
-        choice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : View all Contacts \n0 : Exit: ");
+        choice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : Total Number of contacts available \n5 : View all Contacts \n0 : Exit: ");
         switch (parseInt(choice)) {
             case 1:
                 addContactsToAddressBook();
@@ -135,6 +142,9 @@
                 deleteContact();
                 break;
             case 4:
+                countOfContacts();
+                break;
+            case 5:
                 viewContacts();
                 break;
             default:
