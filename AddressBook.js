@@ -67,7 +67,7 @@
         let firstName = prompt("Enter First Name: ");
         let lastName = prompt("Enter Last Name: ");
 
-        if (ContactsArray.find((contact) => (contact.firstName==firstName && contact.lastName==lastName))) {
+        if (ContactsArray.find((contact) => (contact.firstName == firstName && contact.lastName == lastName))) {
             console.log("Warning!!! Given contact already present in address book");
             return;
         }
@@ -130,12 +130,20 @@
     let countOfContacts = () => {
         console.log("Total Number of contacts are : " + ContactsArray.reduce((totalCount, contact) => totalCount += 1, 0));
     }
+    //Searching a given contact in Satate
+    let searchContactInState = () => {
+        let stateName = prompt("Enter state name: ");
+        let firstName= prompt("Enter contact first name: ")
+        let serachcontactByState = ContactsArray.filter(contact => contact.state == stateName).find(contact => contact.firstName == firstName);
+        console.log("First contact found in given state: \n" +serachcontactByState);
+    }
 
     console.log("Welcome To AddressBook Program through JavaScript");
     let choice = 0;
     //calling addContactsToAddressBook method to add new contact to Array
     do {
-        choice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : Total Number of contacts available \n5 : View all Contacts \n0 : Exit: ");
+        choice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : Total Number of contacts available" +
+            "\n5 : Search contacts in given State \n6 : View all Contacts \n0 : Exit: ");
         switch (parseInt(choice)) {
             case 1:
                 addContactsToAddressBook();
@@ -150,6 +158,9 @@
                 countOfContacts();
                 break;
             case 5:
+                searchContactInState();
+                break;
+            case 6:
                 viewContacts();
                 break;
             default:
