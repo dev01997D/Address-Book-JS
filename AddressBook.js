@@ -148,15 +148,34 @@
     let countOfContactsByState = () => {
         let stateName = prompt("Enter state name: ");
         let countOfcontactsByState = ContactsArray.filter(contact => contact.state == stateName).reduce((totalCount, contact) => totalCount += 1, 0);
-        console.log("Total number of contacts in state : "+stateName + " is equal to : " + countOfcontactsByState);
+        console.log("Total number of contacts in state : " + stateName + " is equal to : " + countOfcontactsByState);
     }
+    //sort contact by its name
+    let sortContactByName = () => {
+        return ContactsArray.sort((a, b) => {
+            return ((a.firstName > b.firstName) ? 1 : -1)
+        });
+    }
+    //sort contactby stateName
+    let sortContactByState = () => {
+        return ContactsArray.sort((a, b) => {
+            return ((a.state > b.state) ? 1 : -1)
+        });
+    }
+    //sort contact by zip
+    let sortContactByZip = () => {
+        return ContactsArray.sort((a, b) => {
+            return ((a.zip > b.zip) ? 1 : -1)
+        });
+    }
+
     console.log("Welcome To AddressBook Program through JavaScript");
     let choice = 0;
     //calling addContactsToAddressBook method to add new contact to Array
     do {
         choice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : Total Number of contacts available" +
             "\n5 : Search contacts in given State \n6 : View contacts by given state \n7 : Count of contacts By state " +
-            "\n8 : View all Contacts \n0 : Exit: ");
+            "\n8 : Sort contact by First Name \n9 : Sort Contact by State \n10 : Sort Contact by zip \n11 : View all Contacts \n0 : Exit: ");
         switch (parseInt(choice)) {
             case 1:
                 addContactsToAddressBook();
@@ -180,6 +199,15 @@
                 countOfContactsByState();
                 break;
             case 8:
+                sortContactByName();
+                break;
+            case 9:
+                sortContactByState();
+                break;
+            case 10:
+                sortContactByZip();
+                break;
+            case 11:
                 viewContacts();
                 break;
             default:
