@@ -133,17 +133,23 @@
     //Searching a given contact in Satate
     let searchContactInState = () => {
         let stateName = prompt("Enter state name: ");
-        let firstName= prompt("Enter contact first name: ")
+        let firstName = prompt("Enter contact first name: ")
         let serachcontactByState = ContactsArray.filter(contact => contact.state == stateName).find(contact => contact.firstName == firstName);
-        console.log("First contact found in given state: \n" +serachcontactByState);
+        console.log("First contact found in given state: \n" + serachcontactByState);
     }
-
+    //View given contacts in Satate
+    let veiwContactInState = () => {
+        let stateName = prompt("Enter state name: ");
+        let viewcontactsByState = ContactsArray.filter(contact => contact.state == stateName).map(contact=> contact);
+        if (viewcontactsByState.length > 0) console.log("Contacts found in given state: \n" + viewcontactsByState.toString());
+        else console.log("No contacts found for given state");
+    }
     console.log("Welcome To AddressBook Program through JavaScript");
     let choice = 0;
     //calling addContactsToAddressBook method to add new contact to Array
     do {
         choice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : Total Number of contacts available" +
-            "\n5 : Search contacts in given State \n6 : View all Contacts \n0 : Exit: ");
+            "\n5 : Search contacts in given State \n6 : View contacts by given state \n7 : View all Contacts \n0 : Exit: ");
         switch (parseInt(choice)) {
             case 1:
                 addContactsToAddressBook();
@@ -161,6 +167,9 @@
                 searchContactInState();
                 break;
             case 6:
+                veiwContactInState();
+                break;
+            case 7:
                 viewContacts();
                 break;
             default:
