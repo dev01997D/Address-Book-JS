@@ -102,11 +102,28 @@
             ContactsArray.find((contact) => contact.firstName == firstNameEdit).firstName = newFirstName;
         }
     }
+    let deleteContact = () => {
+        //console.log(ContactsArray.length);
+        if (ContactsArray.length == 0) {
+            console.log("No contacts Available in Array");
+            return;
+        }
+        let firstNamedelete = prompt("Enter the first name whose contact you want to delete: ");
+        let check = ContactsArray.find((contact) => contact.firstName == firstNamedelete);
+        if (check == undefined) {
+            console.log("No contact with given first name");
+            return;
+        }
+        else {
+            //Filtering out contacts whose doesnt matches with given FirstName
+            ContactsArray = ContactsArray.filter((contact) => contact.firstName != firstNamedelete);
+        }
+    }
     console.log("Welcome To AddressBook Program through JavaScript");
     let choice = 0;
     //calling addContactsToAddressBook method to add new contact to Array
     do {
-        choice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : View all Contacts \n0 : Exit: ");
+        choice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : View all Contacts \n0 : Exit: ");
         switch (parseInt(choice)) {
             case 1:
                 addContactsToAddressBook();
@@ -115,6 +132,9 @@
                 editContact();
                 break;
             case 3:
+                deleteContact();
+                break;
+            case 4:
                 viewContacts();
                 break;
             default:
