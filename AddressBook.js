@@ -62,10 +62,15 @@
 
     //Create an array to store contacts
     let ContactsArray = new Array();
-    //Adding a new contact to Contact array
+    //Adding a new contact to Contact array check duplicate entry before adding to array
     let addContactsToAddressBook = () => {
         let firstName = prompt("Enter First Name: ");
         let lastName = prompt("Enter Last Name: ");
+
+        if (ContactsArray.find((contact) => (contact.firstName==firstName && contact.lastName==lastName))) {
+            console.log("Warning!!! Given contact already present in address book");
+            return;
+        }
         let address = prompt("Enter Address: ");
         let city = prompt("Enter City Name: ");
         let state = prompt("Enter State Name: ");
@@ -123,7 +128,7 @@
     }
     //Find total number of contacts
     let countOfContacts = () => {
-        console.log("Total Number of contacts are : " +ContactsArray.reduce((totalCount, contact) => totalCount += 1, 0));
+        console.log("Total Number of contacts are : " + ContactsArray.reduce((totalCount, contact) => totalCount += 1, 0));
     }
 
     console.log("Welcome To AddressBook Program through JavaScript");
