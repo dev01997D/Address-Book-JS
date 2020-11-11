@@ -1,4 +1,6 @@
 {
+    //Class reference
+    const MethodReference = require("./Methods");
     //Regex patterns
     const NAME_REGEX = RegExp('^[A-Z]{1}[a-z]{2,}$');
     const ADDRESS_CITY_STATE_REGEX = RegExp('^[A-Za-z]{4,}$');
@@ -79,13 +81,48 @@
         }
     }
 
+    //view All Contacts available in Array
+    let viewContacts = () => {
+        console.log(ContactsArray.toString()+ "\n");
+    }
+    let editContact = () => {
+        console.log(ContactsArray.length);
+        if (ContactsArray.length == 0) {
+            console.log("No contacts Available in Array");
+            return;
+        }
+        let firstNameEdit = prompt("Enter the first name whose contact you want to edit: ");
+        let newFirstName = prompt("Enter new first name: ");
+        let check = ContactsArray.find((contact) => contact.firstName == firstNameEdit);
+        if (check == undefined) {
+            console.log("No contact with given first name");
+            return;
+        }
+        else {
+            ContactsArray.find((contact) => contact.firstName == firstNameEdit).firstName = newFirstName;
+        }
+    }
     console.log("Welcome To AddressBook Program through JavaScript");
     let choice = 0;
     //calling addContactsToAddressBook method to add new contact to Array
     do {
-        choice = prompt("Enter \n1 : Add contact \n0 : Exit: ");
-        if (choice == 1) {
-            addContactsToAddressBook();
+        choice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : View all Contacts \n0 : Exit: ");
+        switch (parseInt(choice)) {
+            case 1:
+                addContactsToAddressBook();
+                break;
+            case 2:
+                editContact();
+                break;
+            case 3:
+                viewContacts();
+                break;
+            default:
+                console.log("Please! Try again...");
+                break;
         }
+
     } while (choice != 0);
+
+    exports.ContactData = ContactData;
 }
