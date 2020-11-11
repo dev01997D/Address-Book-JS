@@ -140,16 +140,23 @@
     //View given contacts in Satate
     let veiwContactInState = () => {
         let stateName = prompt("Enter state name: ");
-        let viewcontactsByState = ContactsArray.filter(contact => contact.state == stateName).map(contact=> contact);
+        let viewcontactsByState = ContactsArray.filter(contact => contact.state == stateName).map(contact => contact);
         if (viewcontactsByState.length > 0) console.log("Contacts found in given state: \n" + viewcontactsByState.toString());
         else console.log("No contacts found for given state");
+    }
+    //Count of contacts by state
+    let countOfContactsByState = () => {
+        let stateName = prompt("Enter state name: ");
+        let countOfcontactsByState = ContactsArray.filter(contact => contact.state == stateName).reduce((totalCount, contact) => totalCount += 1, 0);
+        console.log("Total number of contacts in state : "+stateName + " is equal to : " + countOfcontactsByState);
     }
     console.log("Welcome To AddressBook Program through JavaScript");
     let choice = 0;
     //calling addContactsToAddressBook method to add new contact to Array
     do {
         choice = prompt("Enter \n1 : Add contact \n2 : Edit a Contact \n3 : Delete a contact \n4 : Total Number of contacts available" +
-            "\n5 : Search contacts in given State \n6 : View contacts by given state \n7 : View all Contacts \n0 : Exit: ");
+            "\n5 : Search contacts in given State \n6 : View contacts by given state \n7 : Count of contacts By state " +
+            "\n8 : View all Contacts \n0 : Exit: ");
         switch (parseInt(choice)) {
             case 1:
                 addContactsToAddressBook();
@@ -170,6 +177,9 @@
                 veiwContactInState();
                 break;
             case 7:
+                countOfContactsByState();
+                break;
+            case 8:
                 viewContacts();
                 break;
             default:
